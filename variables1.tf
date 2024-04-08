@@ -19,7 +19,7 @@ resource "aws_instance" "ajit-server" {
 
 resource "aws_security_group" "var_demo" {
   name        = "ajit-variables"
-  vpc_id      = ""
+  vpc_id      = "vpc-03584a45c6f17eff3"
 
   ingress {
     from_port   = 443
