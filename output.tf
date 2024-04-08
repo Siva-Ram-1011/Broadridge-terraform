@@ -4,7 +4,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_instance" "ajit-test-server" {
+resource "aws_instance" "ajit-server" {
   ami = ""
   instance_type = "t2.micro"
 
@@ -13,23 +13,12 @@ resource "aws_instance" "ajit-test-server" {
   }
 }
 
-output "myawsserver-ip" {
-  value = [aws_instance.myawsserver.public_ip]
+output "ajit-server-ip" {
+  value = [aws_instance.ajit-server.public_ip]
 }
 
 output "myawsserver-type" {
-  value = [aws_instance.myawsserver.instance_type]
+  value = [aws_instance.ajit-server.instance_type]
 }
 
-resource "aws_eip" "lb" {
-  vpc      = true
-}
-
-output "eip" {
-  value = aws_eip.lb
-}
-
-resource "aws_s3_bucket" "mys3" {
-  bucket = "ramnn"
-}
 
