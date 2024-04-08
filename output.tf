@@ -1,15 +1,15 @@
 LAB :EC2 instance with output value and attributes :     
 
 provider "aws" {
-  region = "us-east-2"
+  region = "us-east-1"
 }
 
-resource "aws_instance" "myawsserver" {
-  ami = "ami-064ff912f78e3e561"
+resource "aws_instance" "ajit-test-server" {
+  ami = ""
   instance_type = "t2.micro"
 
   tags = {
-    Name = "Techlanders-aws-ec2-instance"
+    Name = "ajit-aws-ec2-instance"
   }
 }
 
