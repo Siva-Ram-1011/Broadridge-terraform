@@ -5,21 +5,21 @@ LAB : Variables :
 vi firstec2.tf
 
 provider "aws" {
-  region = "us-east-2"
+  region = "us-east-1"
 }
 
-resource "aws_instance" "myawsserver" {
-  ami = "ami-064ff912f78e3e561"
+resource "aws_instance" "ajit-server" {
+  ami = "ami-080e1f13689e07408"
   instance_type = "t2.micro"
 
   tags = {
-    Name = "Techlanders-aws-ec2-instance"
+    Name = "ajit-ec2-instance"
   }
 }
 
 resource "aws_security_group" "var_demo" {
-  name        = "raman-variables"
-  vpc_id      = "vpc-09db8688d039eb48a"
+  name        = "ajit-variables"
+  vpc_id      = ""
 
   ingress {
     from_port   = 443
