@@ -1,0 +1,37 @@
+LAB: Local Values :
+
+provider "aws" {
+  region     = "us-east-2"
+}
+
+locals {
+  commontag-dev = {
+    Owner = "DevOps Team"
+    service = "backend"
+  }
+commontag-prod = {
+    Owner = "Prod Team"
+    service = "Production"
+  }
+
+}
+resource "aws_instance" "app-dev" {
+   ami = "ami-064ff912f78e3e561"
+   instance_type = "t2.micro"
+   tags = local.commontag-dev
+}
+
+resource "aws_instance" "db-prod" {
+   ami = "ami-064ff912f78e3e561"
+   instance_type = "t2.small"
+   tags = local.commontag-prod
+}
+
+resource "aws_ebs_volume" "db_ebs" {
+  availability_zone = "us-east-2a"
+  size              = 1
+  tags = local.commontag-dev
+}
+
+
+***********************************************************************
