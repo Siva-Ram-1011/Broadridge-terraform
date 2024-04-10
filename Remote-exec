@@ -18,10 +18,6 @@ provisioner "remote-exec" {
           "sudo systemctl start apache2",
     ]
   }
-provisioner "file" {
-    source      = "terraform.tfstate.backup"
-    destination = "/tmp/"
-  }
  connection {
     type     = "ssh"
     user     = "ubuntu"
