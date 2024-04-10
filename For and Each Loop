@@ -1,0 +1,39 @@
+FOR AND FOR-EACH LOOP :
+
+[root@main-tf ~]# cat first.tf
+provider "aws" {
+region= "us-east-1"
+}
+
+#FOR-EACH :
+
+variable "bucket_names" {
+  type = set(string)
+  default = ["ramannnnnn-buckettttttttt1","ramannnnnn-buckettttttttt2","ramannnnnn-buckettttttttt3"]
+}
+
+resource "aws_s3_bucket" "example_bucket" {
+  for_each = var.bucket_names
+  bucket = each.value
+}
+/*
+
+# FOR :
+
+variable "user_names" {
+  description = "IAM usernames"
+  type        = list(string)
+  default     = ["user1", "user2", "user3"]
+}
+
+output "print_the_names" {
+  value = [for name in var.user_names : name]
+}
+
+*/
+
+-----------------
+
+*******
+
+
