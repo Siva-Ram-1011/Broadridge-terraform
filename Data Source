@@ -1,0 +1,21 @@
+Terraform data sources allow you to fetch information from existing resources or external systems, and then use that information within your Terraform configuration. This is useful for integrating with external systems, querying metadata, or importing existing resources into your Terraform configuration.
+
+Here's an example of using the aws_vpc data source to fetch information about an existing VPC in AWS:
+
+
+
+data "aws_vpc" "existing_vpc" {
+  id = "vpc-1234567890"
+}
+
+resource "aws_subnet" "example" {
+  vpc_id     = data.aws_vpc.existing_vpc.id
+  cidr_block = "10.0.1.0/24"
+}
+
+
+
+In this example:
+
+We declare a data source aws_vpc with the ID of an existing VPC.
+We then use the fetched VPC ID to create a new subnet in the same VPC using a resource block.
