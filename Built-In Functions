@@ -1,0 +1,65 @@
+Terraform provides several built-in functions that you can use within your configuration files to manipulate data, generate values dynamically, or perform various operations. These functions are built into Terraform and are available for use without any additional configuration.
+
+Here are some examples of Terraform built-in functions:
+
+1. format:
+Formats a string using printf-style formatting.
+
+Example:
+
+variable "name" {
+  default = "John"
+}
+
+output "greeting" {
+  value = format("Hello, %s!", var.name)
+}
+
+
+2. join:
+Joins elements of a list into a single string with a delimiter.
+
+Example:
+
+variable "tags" {
+  type    = list(string)
+  default = ["tag1", "tag2", "tag3"]
+}
+
+resource "aws_instance" "example" {
+  # other configurations
+  tags = {
+    Name = join("-", var.tags)
+  }
+}
+
+
+3. element:
+Returns the element at the specified index of a list.
+
+Example:
+
+
+variable "subnet_ids" {
+  type    = list(string)
+  default = ["subnet-1", "subnet-2", "subnet-3"]
+}
+
+resource "aws_instance" "example" {
+  subnet_id = element(var.subnet_ids, 0)  # Uses the first subnet ID
+}
+
+
+4. file:
+Reads the contents of a file at the specified path.
+
+Example:
+
+locals {
+  script_content = file("${path.module}/scripts/init.sh")
+}
+
+resource "aws_instance" "example" {
+  user_data = local.script_content
+}
+
